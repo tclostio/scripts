@@ -75,7 +75,7 @@ def proxy_handler(client_socket, remote_host, remote_port, receive_first):
 
             break
 
-#Copied shamelessly from http://code.activestate.com/recipes/142812-hex-dumber/
+#Copied shamelessly from http://code.activestate.com/recipes/142812-hex-dumper/
 def hexdump(src, length=16):
     result = []
     digits = 4 if isinstance(src, unicode) else 2
@@ -102,7 +102,7 @@ def receive_from(connection):
             buffer += data
     except:
         pass
-        
+
         return buffer
 
 def request_handler(buffer):
@@ -111,10 +111,19 @@ def request_handler(buffer):
 def response_handler(buffer):
     return buffer
 
+def usage():
+
+    print """
+....................::TCP_PROXY::....................
+Usage: tcp_proxy.py [localhost] [localport] [remotehost] [remoteport] [receive_first]"
+
+Example: sudo tcp_proxy.py [127.0.0.1 21] [21] [www.example.com] [21] [True]
+"""
+
 def main():
 
     if len(sys.argv[1:]) != 5:
-        print "[USAGE]: tcp_proxy.py [localhost] [localport] [remotehost] [remoteport] [recieve_first]"
+        usage()
         sys.exit(0)
 
     local_host = sys.argv[1]
