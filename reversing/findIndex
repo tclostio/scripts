@@ -1,0 +1,27 @@
+#!/usr/bin/python3
+
+"""
+Finds the index of a 4-byte word in a fuzzer string.
+"""
+import sys
+import argparse
+import mmap
+
+parser = argparse.ArgumentParser(description="Find the index of a 4-byte word in a long string.")
+parser.add_argument("bytes", help="the 4 byte pattern to search.")
+parser.add_argument("file", help="the file containing the string to search.")
+args = parser.parse_args()
+
+def search(bytes, file):
+    if(len(bytes) != 4):
+        print("[!!] Please search only 4 byte chunks")
+        sys.exit()
+    f = open(file)
+    s = mmap.mmap(f.fileno(), 0, access=mmap.ACCESS_READ)
+
+    if(s.find(bytes.encode().upper()) != -1):
+        print("Bytes found at index",s.find(bytes.encode().upper()))
+    else:
+        print('Bytes not found')
+
+search(args.bytes, args.file)
