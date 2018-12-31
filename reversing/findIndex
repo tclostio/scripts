@@ -2,6 +2,7 @@
 
 """
 Finds the index of a 4-byte word in a fuzzer string.
+Best used in conjunction with the genPattern script output.
 """
 import sys
 import argparse
