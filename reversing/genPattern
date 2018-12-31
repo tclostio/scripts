@@ -6,7 +6,6 @@ Generate a nonrepeating pattern of bytes with prefix of n length.
 
 import sys
 import argparse
-import mmap
 
 parser = argparse.ArgumentParser(description="Generate a fuzzer string to target EIP.")
 parser.add_argument("length", type=int, help="length of the prefix")
